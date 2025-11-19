@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:sqlpass@localhost/Alumini_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:sqlpass@localhost/Alumini_DB'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
@@ -23,7 +23,7 @@ def login():
         new_user = Login(name=username,password=password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('base.html'))
+        return redirect(url_for('home'))
     return render_template('login.html')
 
 @app.route('/signup', methods =['GET','POST'])
@@ -36,7 +36,7 @@ def signup():
         new_user = SignUp(name=username, email = email_id,password=password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('base.html'))
+        return redirect(url_for('home'))
     return render_template('sign_up.html')
 
 if __name__ == '__main__':
